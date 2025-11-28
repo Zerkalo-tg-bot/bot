@@ -1,5 +1,5 @@
 import type { Telegraf } from "telegraf";
-import { sendMessage } from "../api/apiService";
+import { sendMessage } from "../api/apiService.js";
 
 export function registerOnTextHandler(bot: Telegraf) {
   bot.on("text", async (ctx) => {
@@ -8,11 +8,14 @@ export function registerOnTextHandler(bot: Telegraf) {
       ctx.sendChatAction("typing");
     }, 5000);
     try {
-      const clientMessage = { text: ctx.message.text };
+      const clientMessage = { content: ctx.message.text, telegramUserId: ctx.message.from.id };
+      console.log("Received message from user:", clientMessage);
       const response = await sendMessage(clientMessage);
-      ctx.reply(response.data);
+      console.log("Received message from API", response.data);
+      ctx.reply(response.data ?? "пустое сообщение");
     } catch (error) {
       console.error("Error sending message to API:", error);
+      ctx.reply("Ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз позже.");
     }
     clearTimeout(sendActionTimeoutId);
   });

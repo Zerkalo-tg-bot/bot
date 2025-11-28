@@ -1,3 +1,4 @@
 export interface IClientMessage {
-  text: string;
+  content: string;
+  telegramUserId: number;
 }

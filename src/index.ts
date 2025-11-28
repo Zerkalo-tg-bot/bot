@@ -1,6 +1,6 @@
 import { Telegraf } from "telegraf";
 import dotenv from "dotenv";
-import { registerHandlers } from "@handlers/registerHandlers";
+import { registerHandlers } from "./handlers/registerHandlers.js";
 
 dotenv.config();
 

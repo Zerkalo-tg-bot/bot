@@ -1,6 +1,6 @@
 import type { Telegraf } from "telegraf";
-import { registerOnTextHandler } from "./registerOnTextHandler";
-import { registerOnStartHandler } from "./registerOnStartHandler";
+import { registerOnTextHandler } from "./registerOnTextHandler.js";
+import { registerOnStartHandler } from "./registerOnStartHandler.js";
 
 export function registerHandlers(bot: Telegraf) {
   registerOnStartHandler(bot);
