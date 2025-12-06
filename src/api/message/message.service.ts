@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { IClientMessage } from "./model.js";
+import type { IClientMessage } from "../../model/index.js";
 
 export const messageService = {
   sendMessage(message: IClientMessage) {

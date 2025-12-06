@@ -1,5 +1,8 @@
 import type { Telegraf } from "telegraf";
-
+import { chatService } from "../api/index.js";
 export function registerOnStartHandler(bot: Telegraf) {
-  bot.start((ctx) => ctx.reply("Привет! Я бот на TypeScript. Отправь мне любое сообщение, и я его повторю."));
+  bot.start(async (ctx) => {
+    await chatService.resetChatState(ctx.message.from.id);
+    ctx.reply("Привет! Я готов к общению. Как я могу помочь вам сегодня?");
+  });
 }

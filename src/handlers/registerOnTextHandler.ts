@@ -1,6 +1,6 @@
 import type { Telegraf } from "telegraf";
-import { messageService } from "../api/message.service.js";
-import type { IClientMessage } from "../api/model.js";
+import { messageService } from "../api/index.js";
+import type { IClientMessage } from "../model/index.js";
 
 export function registerOnTextHandler(bot: Telegraf) {
   bot.on("message", async (ctx) => {
