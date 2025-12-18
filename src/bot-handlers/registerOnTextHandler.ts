@@ -19,6 +19,7 @@ export function registerOnTextHandler(bot: Telegraf) {
     } catch (error) {
       console.error("Error sending message to API:", error);
       ctx.reply("Ошибка при отправке сообщения. Пожалуйста, попробуйте еще раз позже.");
+     
     }
     clearInterval(sendActionIntervalId);
   });

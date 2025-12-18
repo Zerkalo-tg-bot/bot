@@ -1,7 +1,7 @@
 import type { Telegraf } from "telegraf";
 import { chatService, messageService } from "../api/index.js";
-export function registerOnStartHandler(bot: Telegraf) {
-  bot.start(async (ctx) => {
+export function registerOnResetHandler(bot: Telegraf) {
+  bot.command("reset", async (ctx) => {
     ctx.sendChatAction("typing");
     const sendActionIntervalId = setInterval(() => {
       ctx.sendChatAction("typing");
@@ -11,7 +11,11 @@ export function registerOnStartHandler(bot: Telegraf) {
       await chatService.resetChatState(ctx.message.from.id);
       const greeting = (await messageService.getGreeting(ctx.message.from.id)).data;
       clearInterval(sendActionIntervalId);
-      ctx.reply(greeting || "Привет! Я готов к общению. Как я могу помочь вам сегодня?");
+      if (!greeting) {
+        ctx.reply("Ошибка при получении приветственного сообщения. Пожалуйста, попробуйте еще раз позже.");
+        return;
+      }
+      ctx.reply(greeting);
     } catch (error) {
       console.error("Error getting greeting from API:", error);
       ctx.reply("Ошибка при получении приветственного сообщения. Пожалуйста, попробуйте еще раз позже.");
