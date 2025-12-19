@@ -2,6 +2,7 @@ import { Telegraf } from "telegraf";
 import dotenv from "dotenv";
 import { registerHandlers } from "./bot-handlers/registerHandlers.js";
 import { configureBot } from "./bot-config/configure.js";
+import i18n from "./i18n/i18n.js";
 
 
 dotenv.config();
@@ -15,5 +16,5 @@ configureBot(bot, isProduction);
 registerHandlers(bot);
 
 bot.launch().then(() => {
-  console.log("Бот запущен");
-});
+  console.log("Bot has been started");
+}); 

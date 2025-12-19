@@ -1,5 +1,6 @@
 import type { Telegraf } from "telegraf";
 import { chatService, messageService } from "../api/index.js";
+import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
 export function registerOnStartHandler(bot: Telegraf) {
   bot.start(async (ctx) => {
      ctx.sendChatAction("typing");
@@ -10,16 +11,15 @@ export function registerOnStartHandler(bot: Telegraf) {
     try {
       await chatService.resetChatState(ctx.message.from.id);
       const greeting = (await messageService.getGreeting(ctx.message.from.id)).data;
-      clearInterval(sendActionIntervalId);
       if (!greeting) {
-        ctx.reply("Ошибка при получении приветственного сообщения. Пожалуйста, попробуйте еще раз позже.");
-        return;
+        throw new Error("No greeting message from API");
       }
+      clearInterval(sendActionIntervalId);
       ctx.reply(greeting);
     } catch (error) {
       console.error("Error getting greeting from API:", error);
-      ctx.reply("Ошибка при получении приветственного сообщения. Пожалуйста, попробуйте еще раз позже.");
       clearInterval(sendActionIntervalId);
+      sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later");
     }
   });
 }

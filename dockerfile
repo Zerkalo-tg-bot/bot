@@ -8,5 +8,6 @@ RUN npm install
 
 COPY tsconfig.json ./
 COPY src ./src
+COPY locales ./locales
 
 CMD ["npm", "run", "dev"]
