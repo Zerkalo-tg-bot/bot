@@ -1,12 +1,13 @@
 import axios from "axios";
-import type { IClientMessage } from "../../model/index.js";
+import type { ISendMessage } from "./model/send-message.interface.js";
+import type { IMessageResponse } from "./model/index.js";
 
 export const messageService = {
-  sendMessage(telegramUserId: number, message: IClientMessage) {
-    return axios.post(`${process.env.API_URL}/${telegramUserId}/message`, message);
+  sendMessage(telegramUserId: number, message: ISendMessage) {
+    return axios.post<IMessageResponse>(`${process.env.API_URL}/${telegramUserId}/message`, message);
   },
 
   getGreeting(telegramUserId: number) {
-    return axios.get(`${process.env.API_URL}/${telegramUserId}/message/greeting`);
+    return axios.get<IMessageResponse>(`${process.env.API_URL}/${telegramUserId}/message/greeting`);
   },
 };
