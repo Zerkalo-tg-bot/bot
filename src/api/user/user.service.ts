@@ -1,7 +1,7 @@
 import { getApiClient } from "../http/apiClient.js";
 import { requireData } from "../http/unwrap.js";
 import type { IUpdateDisclaimerDto } from "./dto/update-disclaimer.dto.js";
-import type { IUser } from "../../core/interfaces/user.interface.js";
+import type { IUser } from "../../core/interfaces/index.js";
 
 export const userService = {
   async getUser(telegramUserId: number): Promise<IUser> {

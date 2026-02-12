@@ -1,5 +1,4 @@
 import type { Telegraf } from "telegraf";
-import { messageService } from "../api/message/index.js";
 import { chatService } from "../api/chat/index.js";
 import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
 import { botConfigService } from "../api/bot-config/bot-config.service.js";

@@ -1,8 +1,9 @@
 import type { Telegraf } from "telegraf";
 import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
-import { messageService, type ISendMessage } from "../api/message/index.js";
+import { messageService } from "../api/message/index.js";
 import { userService } from "../api/user/user.service.js";
 import { withTyping } from "../core/telegram/withTyping.js";
+import type { IMessage } from "../core/interfaces/index.js";
 
 export function registerOnTextHandler(bot: Telegraf) {
   bot.on("message", async (ctx) => {
@@ -23,7 +24,7 @@ export function registerOnTextHandler(bot: Telegraf) {
           return;
         }
 
-        const clientMessage: ISendMessage = { content: msg.text };
+        const clientMessage: IMessage = { content: msg.text };
         const response = await messageService.sendMessage(ctx.message.from.id, clientMessage).catch((error) => {
           console.error("Error sending message to API:", error);
           throw error;

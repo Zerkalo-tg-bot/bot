@@ -1,6 +1,6 @@
 import { getApiClient } from "../http/apiClient.js";
 import { requireData } from "../http/unwrap.js";
-import type { IUser } from "../../core/interfaces/user.interface.js";
+import type { IUser } from "../../core/interfaces/index.js";
 
 export const chatService = {
   async resetChatState(telegramUserId: number): Promise<void> {
