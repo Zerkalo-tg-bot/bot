@@ -1,8 +1,8 @@
 import type { Telegraf } from "telegraf";
-
 import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
 import { chatService } from "../api/chat/chat.service.js";
 import { messageService } from "../api/message/message.service.js";
+
 export function registerOnResetHandler(bot: Telegraf) {
   bot.command("reset", async (ctx) => {
     ctx.sendChatAction("typing");
