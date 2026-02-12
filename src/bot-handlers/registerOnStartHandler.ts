@@ -19,16 +19,12 @@ export function registerOnStartHandler(bot: Telegraf) {
           throw error;
         });
 
-        const response = await botConfigService.getDisclaimer().catch((error) => {
+        const disclaimer = await botConfigService.getDisclaimer().catch((error) => {
           console.error("Error getting disclaimer from API:", error);
           throw error;
         });
 
-        if (!response.data || !response.data.content) {
-          throw new Error("No disclaimer content from API");
-        }
-
-        await ctx.reply(response.data.content, {
+        await ctx.reply(disclaimer.content, {
           parse_mode: "HTML",
           reply_markup: {
             inline_keyboard: [[{ text: "Продолжить", callback_data: "accept_disclaimer" }]],

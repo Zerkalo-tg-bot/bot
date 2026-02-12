@@ -2,22 +2,16 @@ import type { Telegraf } from "telegraf";
 import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
 import { messageService, type ISendMessage } from "../api/message/index.js";
 import { userService } from "../api/user/user.service.js";
-import type { IUser } from "../core/interfaces/user.interface.js";
 import { withTyping } from "../core/telegram/withTyping.js";
 
 export function registerOnTextHandler(bot: Telegraf) {
   bot.on("message", async (ctx) => {
     await withTyping(ctx, async () => {
       try {
-        const userResponse = await userService.getUser(ctx.message.from.id).catch((error) => {
+        const user = await userService.getUser(ctx.message.from.id).catch((error) => {
           console.error("Error getting user:", error);
           throw error;
         });
-
-        const user: IUser | undefined = userResponse.data;
-        if (!user) {
-          throw new Error("No user data from API");
-        }
 
         if (!user.acceptedDisclaimer) {
           await ctx.reply("Пожалуйста, примите условия использования, прежде чем отправлять сообщения.");
@@ -35,11 +29,7 @@ export function registerOnTextHandler(bot: Telegraf) {
           throw error;
         });
 
-        if (!response.data || !response.data.content) {
-          throw new Error("No response data from API");
-        }
-
-        await ctx.reply(response.data.content);
+        await ctx.reply(response.content);
       } catch {
         sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later");
       }

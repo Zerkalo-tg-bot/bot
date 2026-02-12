@@ -1,13 +1,16 @@
-import axios from "axios";
+import { getApiClient } from "../http/apiClient.js";
+import { requireData } from "../http/unwrap.js";
 import type { IUpdateDisclaimerDto } from "./dto/update-disclaimer.dto.js";
 import type { IUser } from "../../core/interfaces/user.interface.js";
 
 export const userService = {
-  async getUser(telegramUserId: number) {
-    return axios.get<IUser>(`${process.env.API_URL}/user/${telegramUserId}`);
+  async getUser(telegramUserId: number): Promise<IUser> {
+    const response = await getApiClient().get<IUser>(`/user/${telegramUserId}`);
+    return requireData(response);
   },
 
-  async updateDisclaimer(telegramUserId: number, updateDisclaimerDto: IUpdateDisclaimerDto) {
-    return axios.patch<IUser>(`${process.env.API_URL}/user/${telegramUserId}/disclaimer`, updateDisclaimerDto);
+  async updateDisclaimer(telegramUserId: number, updateDisclaimerDto: IUpdateDisclaimerDto): Promise<IUser> {
+    const response = await getApiClient().patch<IUser>(`/user/${telegramUserId}/disclaimer`, updateDisclaimerDto);
+    return requireData(response);
   },
 };

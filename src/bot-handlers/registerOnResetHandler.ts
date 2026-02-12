@@ -13,16 +13,12 @@ export function registerOnResetHandler(bot: Telegraf) {
           throw error;
         });
 
-        const response = await messageService.getGreeting(ctx.message.from.id).catch((error) => {
+        const greeting = await messageService.getGreeting(ctx.message.from.id).catch((error) => {
           console.error("Error getting greeting from API:", error);
           throw error;
         });
 
-        if (!response.data || !response.data.content) {
-          throw new Error("No response data from API");
-        }
-
-        await ctx.reply(response.data.content);
+        await ctx.reply(greeting.content);
       } catch {
         sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later");
       }
