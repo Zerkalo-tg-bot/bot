@@ -4,6 +4,7 @@
     "accept_disclaimer_failed": "An error occurred while accepting the terms of use. Please try again later.",
     "choose_language": "Please choose your language:",
     "disclaimer": "This application is a <b>conversational assistant supporting self-reflection and subjective well-being</b>.\nIt is not a medical, psychological, or therapeutic tool.\n\nThe assistant <b>does not diagnose, provide therapy, or give medical or psychotherapeutic recommendations</b>. The responses are informational and supportive and cannot replace help from qualified professionals.\n\nIn case of a crisis, thoughts of self-harm or harm to others, or worsening mental health, it is recommended to <b>seek professional help immediately</b> or contact emergency services.\n\nBy using the application, you confirm that you understand its limitations and use it <b>at your own responsibility</b>.",
+    "reset_farewell": "Sorry to see you go. We’ll be here if you decide to come back.\n\nTo start using the bot again, send /start.",
     "continue_button": "Continue"
   },
   "error-section": {

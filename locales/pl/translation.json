@@ -4,6 +4,7 @@
     "accept_disclaimer_failed": "Wystąpił błąd podczas akceptowania warunków korzystania. Proszę spróbować ponownie później.",
     "choose_language": "Wybierz język:",
     "disclaimer": "Ta aplikacja jest <b>asystentem konwersacyjnym wspierającym autorefleksję i subiektywny dobrostan</b>.\nNie jest to narzędzie medyczne, psychologiczne ani terapeutyczne.\n\nAsystent <b>nie stawia diagnoz, nie prowadzi terapii i nie udziela zaleceń medycznych ani psychoterapeutycznych</b>. Odpowiedzi mają charakter informacyjny i wspierający i nie mogą zastąpić pomocy wykwalifikowanych specjalistów.\n\nW przypadku stanów kryzysowych, myśli o skrzywdzeniu siebie lub innych albo pogorszenia stanu psychicznego zaleca się <b>niezwłocznie skontaktować się z profesjonalną pomocą</b> lub ze służbami ratunkowymi.\n\nKorzystając z aplikacji, potwierdzasz, że rozumiesz jej ograniczenia i używasz jej <b>na własną odpowiedzialność</b>.",
+    "reset_farewell": "Szkoda, że odchodzisz. Będziemy tu, jeśli zechcesz wrócić.\n\nAby ponownie zacząć korzystać z bota, wpisz /start.",
     "continue_button": "Kontynuuj"
   },
   "error-section": {

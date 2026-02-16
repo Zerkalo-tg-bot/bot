@@ -17,7 +17,15 @@ export function registerOnTextHandler(bot: Telegraf) {
         });
 
         if (!user.acceptedDisclaimer) {
-          await ctx.reply(i18n.t("info-section.accept_disclaimer_required", { lng: user.language }));
+          const disclaimerText = i18n.t("info-section.disclaimer", { lng: user.language });
+          const continueLabel = i18n.t("info-section.continue_button", { lng: user.language });
+
+          await ctx.reply(disclaimerText, {
+            parse_mode: "HTML",
+            reply_markup: {
+              inline_keyboard: [[{ text: continueLabel, callback_data: "accept_disclaimer" }]],
+            },
+          });
           return;
         }
 
@@ -34,7 +42,7 @@ export function registerOnTextHandler(bot: Telegraf) {
 
         await ctx.reply(response.content);
       } catch {
-        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
+        await sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
       }
     });
   });

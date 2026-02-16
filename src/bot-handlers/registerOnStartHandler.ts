@@ -34,7 +34,7 @@ export function registerOnStartHandler(bot: Telegraf) {
           },
         });
       } catch (error) {
-        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
+        await sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
       }
     });
   });
