@@ -1,8 +1,9 @@
 import type { Telegraf } from "telegraf";
 import { chatService } from "../api/chat/index.js";
 import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.js";
-import { botConfigService } from "../api/bot-config/bot-config.service.js";
 import { withTyping } from "../core/telegram/withTyping.js";
+import i18n from "../i18n/i18n.js";
+import { ELanguage } from "../core/enums/index.js";
 
 export function registerOnStartHandler(bot: Telegraf) {
   bot.start(async (ctx) => {
@@ -18,19 +19,22 @@ export function registerOnStartHandler(bot: Telegraf) {
           throw error;
         });
 
-        const disclaimer = await botConfigService.getDisclaimer().catch((error) => {
-          console.error("Error getting disclaimer from API:", error);
-          throw error;
-        });
+        const lng = ELanguage.ENGLISH; // Default language
+        const chooseLanguageText = i18n.t("info-section.choose_language", { lng });
 
-        await ctx.reply(disclaimer.content, {
-          parse_mode: "HTML",
+        await ctx.reply(chooseLanguageText, {
           reply_markup: {
-            inline_keyboard: [[{ text: "Продолжить", callback_data: "accept_disclaimer" }]],
+            inline_keyboard: [
+              [
+                { text: "Русский", callback_data: `set_lang:${ELanguage.RUSSIAN}` },
+                { text: "English", callback_data: `set_lang:${ELanguage.ENGLISH}` },
+                { text: "Polski", callback_data: `set_lang:${ELanguage.POLISH}` },
+              ],
+            ],
           },
         });
       } catch (error) {
-        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later");
+        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
       }
     });
   });

@@ -2,10 +2,13 @@ import type { Telegraf } from "telegraf";
 import { userService } from "../api/user/user.service.js";
 import { messageService } from "../api/message/message.service.js";
 import { withTyping } from "../core/telegram/withTyping.js";
+import i18n from "../i18n/i18n.js";
+import { ELanguage } from "../core/enums/index.js";
 
 export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
   bot.action("accept_disclaimer", async (ctx) => {
     await withTyping(ctx, async () => {
+      let lng = ELanguage.ENGLISH;
       try {
         await ctx.answerCbQuery();
         const userId = ctx.callbackQuery.from.id;
@@ -14,6 +17,8 @@ export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
           console.error("Error getting user:", error);
           throw error;
         });
+
+        lng = user.language;
 
         if (user.acceptedDisclaimer) {
           try {
@@ -42,7 +47,7 @@ export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
         await ctx.reply(greeting.content);
       } catch (error) {
         console.error("Error in accept disclaimer handler:", error);
-        await ctx.reply("Произошла ошибка при принятии условий использования. Пожалуйста, попробуйте еще раз позже.");
+        await ctx.reply(i18n.t("info-section.accept_disclaimer_failed", { lng }));
       } finally {
       }
     });

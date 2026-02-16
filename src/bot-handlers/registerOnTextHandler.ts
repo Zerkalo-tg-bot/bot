@@ -4,6 +4,8 @@ import { messageService } from "../api/message/index.js";
 import { userService } from "../api/user/user.service.js";
 import { withTyping } from "../core/telegram/withTyping.js";
 import type { IMessage } from "../core/interfaces/index.js";
+import i18n from "../i18n/i18n.js";
+import { ELanguage } from "../core/enums/index.js";
 
 export function registerOnTextHandler(bot: Telegraf) {
   bot.on("message", async (ctx) => {
@@ -15,7 +17,7 @@ export function registerOnTextHandler(bot: Telegraf) {
         });
 
         if (!user.acceptedDisclaimer) {
-          await ctx.reply("Пожалуйста, примите условия использования, прежде чем отправлять сообщения.");
+          await ctx.reply(i18n.t("info-section.accept_disclaimer_required", { lng: user.language }));
           return;
         }
 
@@ -32,7 +34,7 @@ export function registerOnTextHandler(bot: Telegraf) {
 
         await ctx.reply(response.content);
       } catch {
-        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later");
+        sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
       }
     });
   });
