@@ -20,15 +20,16 @@ export function registerOnStartHandler(bot: Telegraf) {
         });
 
         const lng = ELanguage.ENGLISH; // Default language
+
         const chooseLanguageText = i18n.t("info-section.choose_language", { lng });
 
         await ctx.reply(chooseLanguageText, {
           reply_markup: {
             inline_keyboard: [
               [
-                { text: "Русский", callback_data: `set_lang:${ELanguage.RUSSIAN}` },
-                { text: "English", callback_data: `set_lang:${ELanguage.ENGLISH}` },
                 { text: "Polski", callback_data: `set_lang:${ELanguage.POLISH}` },
+                { text: "English", callback_data: `set_lang:${ELanguage.ENGLISH}` },
+                { text: "Русский", callback_data: `set_lang:${ELanguage.RUSSIAN}` },
               ],
             ],
           },
