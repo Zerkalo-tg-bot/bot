@@ -34,6 +34,11 @@ export function registerOnTextHandler(bot: Telegraf) {
           return;
         }
 
+        if (msg.text.length > 1000) {
+          await sendLocalizedStaticMessage(ctx, "error-section.message_too_long_max_length_is_1000_characters", user.language);
+          return;
+        }
+
         const clientMessage: IMessage = { content: msg.text };
         const response = await messageService.sendMessage(ctx.message.from.id, clientMessage).catch((error) => {
           console.error("Error sending message to API:", error);

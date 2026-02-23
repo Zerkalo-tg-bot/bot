@@ -8,6 +8,7 @@
     "continue_button": "Kontynuuj"
   },
   "error-section": {
-    "error_sending_message_please_try_again_later": "Wystąpił błąd podczas wysyłania wiadomości. Proszę spróbować ponownie później."
+    "error_sending_message_please_try_again_later": "Wystąpił błąd podczas wysyłania wiadomości. Proszę spróbować ponownie później.",
+    "message_too_long_max_length_is_1000_characters": "Twoja wiadomość przekracza dozwolony limit znaków.\nProszę skrócić tekst lub podzielić go na kilka krótszych wiadomości i wysłać ponownie."
   }
 }
