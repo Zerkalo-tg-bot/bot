@@ -10,6 +10,7 @@
   "error-section": {
     "error_sending_message_please_try_again_later": "Wystąpił błąd podczas wysyłania wiadomości. Proszę spróbować ponownie później.",
     "message_too_long_max_length_is_1000_characters": "Twoja wiadomość przekracza dozwolony limit znaków.\nProszę skrócić tekst lub podzielić go na kilka krótszych wiadomości i wysłać ponownie.",
-    "this_command_does_not_exist": "Ta komenda nie istnieje."
+    "this_command_does_not_exist": "Ta komenda nie istnieje.",
+    "you_are_sending_messages_too_frequently": "Wysyłasz wiadomości zbyt często. Proszę poczekać chwilę przed ponowną próbą."
   }
 }

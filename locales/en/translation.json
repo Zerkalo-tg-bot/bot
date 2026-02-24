@@ -10,6 +10,7 @@
   "error-section": {
     "error_sending_message_please_try_again_later": "Error sending message. Please try again later.",
     "message_too_long_max_length_is_1000_characters": "Your message exceeds the allowed character limit.\nPlease shorten the text or split it into several shorter messages and send again.",
-    "this_command_does_not_exist": "This command does not exist."
+    "this_command_does_not_exist": "This command does not exist.",
+    "you_are_sending_messages_too_frequently": "You are sending messages too frequently. Please wait a moment before trying again."
   }
 }
