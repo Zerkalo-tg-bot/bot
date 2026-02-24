@@ -12,10 +12,7 @@ export function registerOnResetHandler(bot: Telegraf) {
       try {
         const userId = ctx.message.from.id;
 
-        await chatService.resetChatState(userId).catch((error) => {
-          console.error("Error resetting chat state:", error);
-          throw error;
-        });
+        await chatService.resetChatState(userId);
 
         let lng = ELanguage.ENGLISH;
         try {

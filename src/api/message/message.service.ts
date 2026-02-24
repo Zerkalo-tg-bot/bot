@@ -4,12 +4,22 @@ import { requireData } from "../http/unwrap.js";
 
 export const messageService = {
   async sendMessage(telegramUserId: number, message: IMessage): Promise<IMessage> {
-    const response = await getApiClient().post<IMessage>(`/${telegramUserId}/message`, message);
+    const response = await getApiClient()
+      .post<IMessage>(`/${telegramUserId}/message`, message)
+      .catch((error) => {
+        console.error("Error sending message:", error);
+        throw error;
+      });
     return requireData(response);
   },
 
   async getGreeting(telegramUserId: number): Promise<IMessage> {
-    const response = await getApiClient().get<IMessage>(`/${telegramUserId}/message/greeting`);
+    const response = await getApiClient()
+      .get<IMessage>(`/${telegramUserId}/message/greeting`)
+      .catch((error) => {
+        console.error("Error getting greeting message:", error);
+        throw error;
+      });
     return requireData(response);
   },
 };

@@ -9,7 +9,7 @@ export function getApiClient(): AxiosInstance {
   }
 
   if (!apiClient || apiClient.defaults.baseURL !== baseURL) {
-    apiClient = axios.create({ baseURL });
+    apiClient = axios.create({ baseURL, timeout: 10000 });
   }
 
   return apiClient;

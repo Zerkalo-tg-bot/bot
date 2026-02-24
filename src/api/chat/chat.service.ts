@@ -8,7 +8,12 @@ export const chatService = {
   },
 
   async startChatSession(telegramUserId: number): Promise<IUser> {
-    const response = await getApiClient().post<IUser>(`/${telegramUserId}/chat`);
+    const response = await getApiClient()
+      .post<IUser>(`/${telegramUserId}/chat`)
+      .catch((error) => {
+        console.error("Error starting chat session:", error);
+        throw error;
+      });
     return requireData(response);
   },
 };

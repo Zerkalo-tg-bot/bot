@@ -16,10 +16,7 @@ export function registerOnTextHandler(bot: Telegraf) {
     if (ctx.message)
       await withTyping(ctx, async () => {
         try {
-          const user = await userService.getUser(ctx.message.from.id).catch((error) => {
-            console.error("Error getting user:", error);
-            throw error;
-          });
+          const user = await userService.getUser(ctx.message.from.id);
 
           if (!user.acceptedDisclaimer) {
             const disclaimerText = i18n.t("info-section.disclaimer", { lng: user.language });
@@ -42,13 +39,11 @@ export function registerOnTextHandler(bot: Telegraf) {
           }
 
           const clientMessage: IMessage = { content: msg.text };
-          const response = await messageService.sendMessage(ctx.message.from.id, clientMessage).catch((error) => {
-            console.error("Error sending message to API:", error);
-            throw error;
-          });
+          const response = await messageService.sendMessage(ctx.message.from.id, clientMessage);
 
           await ctx.reply(response.content);
-        } catch {
+        } catch (error) {
+          console.error("Error in text message handler:", error);
           await sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
         }
       });

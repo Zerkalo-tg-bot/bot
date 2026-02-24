@@ -13,10 +13,7 @@ export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
         await ctx.answerCbQuery();
         const userId = ctx.callbackQuery.from.id;
 
-        const user = await userService.getUser(userId).catch((error) => {
-          console.error("Error getting user:", error);
-          throw error;
-        });
+        const user = await userService.getUser(userId);
 
         lng = user.language;
 
@@ -29,10 +26,7 @@ export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
           return;
         }
 
-        await userService.updateDisclaimer(userId, { acceptedDisclaimer: true }).catch((error) => {
-          console.error("Error updating disclaimer acceptance:", error);
-          throw error;
-        });
+        await userService.updateDisclaimer(userId, { acceptedDisclaimer: true });
 
         try {
           await ctx.editMessageReplyMarkup({ inline_keyboard: [] });
@@ -40,10 +34,7 @@ export function registerOnAcceptDisclaimerHandler(bot: Telegraf) {
           // Ignore if message can't be edited
         }
 
-        const greeting = await messageService.getGreeting(userId).catch((error) => {
-          console.error("Error getting greeting from API:", error);
-          throw error;
-        });
+        const greeting = await messageService.getGreeting(userId);
         await ctx.reply(greeting.content);
       } catch (error) {
         console.error("Error in accept disclaimer handler:", error);

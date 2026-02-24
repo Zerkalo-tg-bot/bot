@@ -9,15 +9,9 @@ export function registerOnStartHandler(bot: Telegraf) {
   bot.start(async (ctx) => {
     await withTyping(ctx, async () => {
       try {
-        await chatService.resetChatState(ctx.message.from.id).catch((error) => {
-          console.error("Error resetting chat state:", error);
-          throw error;
-        });
+        await chatService.resetChatState(ctx.message.from.id);
 
-        await chatService.startChatSession(ctx.message.from.id).catch((error) => {
-          console.error("Error starting chat session:", error);
-          throw error;
-        });
+        await chatService.startChatSession(ctx.message.from.id);
 
         const lng = ELanguage.ENGLISH; // Default language
 
@@ -35,6 +29,7 @@ export function registerOnStartHandler(bot: Telegraf) {
           },
         });
       } catch (error) {
+        console.error("Error in start handler:", error);
         await sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
       }
     });

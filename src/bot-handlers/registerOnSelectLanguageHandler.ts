@@ -17,10 +17,7 @@ export function registerOnSelectLanguageHandler(bot: Telegraf) {
 
       const lng = selected;
 
-      await userService.updateLanguage(userId, { language: lng }).catch((error) => {
-        console.error("Error updating user language:", error);
-        throw error;
-      });
+      await userService.updateLanguage(userId, { language: lng });
 
       const disclaimerText = i18n.t("info-section.disclaimer", { lng });
       const continueLabel = i18n.t("info-section.continue_button", { lng });
@@ -40,7 +37,8 @@ export function registerOnSelectLanguageHandler(bot: Telegraf) {
           },
         });
       }
-    } catch {
+    } catch (error) {
+      console.error("Error in select language handler:", error);
       await sendLocalizedStaticMessage(ctx, "error-section.error_sending_message_please_try_again_later", ELanguage.ENGLISH);
     }
   });
