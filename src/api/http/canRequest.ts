@@ -6,7 +6,6 @@ export function canRequest(userId: number) {
   const now = Date.now();
   const timestamps = userRequests.get(userId) || [];
 
-  // оставляем только последние запросы за окно
   const recent = timestamps.filter((ts) => now - ts <= WINDOW_MS);
 
   if (recent.length >= LIMIT) return false;
