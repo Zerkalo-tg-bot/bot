@@ -4,8 +4,10 @@
     "accept_disclaimer_failed": "Wystąpił błąd podczas akceptowania warunków korzystania. Proszę spróbować ponownie później.",
     "choose_language": "Wybierz język:",
     "disclaimer": "Ta aplikacja jest <b>asystentem konwersacyjnym wspierającym autorefleksję i subiektywny dobrostan</b>.\nNie jest to narzędzie medyczne, psychologiczne ani terapeutyczne.\n\nAsystent <b>nie stawia diagnoz, nie prowadzi terapii i nie udziela zaleceń medycznych ani psychoterapeutycznych</b>. Odpowiedzi mają charakter informacyjny i wspierający i nie mogą zastąpić pomocy wykwalifikowanych specjalistów.\n\nW przypadku stanów kryzysowych, myśli o skrzywdzeniu siebie lub innych albo pogorszenia stanu psychicznego zaleca się <b>niezwłocznie skontaktować się z profesjonalną pomocą</b> lub ze służbami ratunkowymi.\n\nKorzystając z aplikacji, potwierdzasz, że rozumiesz jej ograniczenia i używasz jej <b>na własną odpowiedzialność</b>.",
+    "are_you_sure_you_want_to_reset": "Czy na pewno chcesz zresetować rozmowę? Spowoduje to usunięcie wszystkich Twoich poprzednich wiadomości. Ta akcja jest nieodwracalna.",
     "reset_farewell": "Szkoda, że odchodzisz. Będziemy tu, jeśli zechcesz wrócić.\n\nAby ponownie zacząć korzystać z bota, wpisz /start.",
-    "continue_button": "Kontynuuj"
+    "continue_button": "Kontynuuj",
+    "it_seems_like_our_conversation_is_already_in_progress": "Wygląda na to, że nasza rozmowa jest już w toku. Proszę kontynuować refleksję tutaj lub użyj /reset, jeśli chcesz zacząć od nowa."
   },
   "error-section": {
     "error_sending_message_please_try_again_later": "Wystąpił błąd podczas wysyłania wiadomości. Proszę spróbować ponownie później.",

@@ -12,8 +12,6 @@ export function registerOnResetHandler(bot: Telegraf) {
       try {
         const userId = ctx.message.from.id;
 
-        await chatService.resetChatState(userId);
-
         let lng = ELanguage.ENGLISH;
         try {
           const user = await userService.getUser(userId);
@@ -21,6 +19,8 @@ export function registerOnResetHandler(bot: Telegraf) {
         } catch {
           // If user isn't available, fall back to English
         }
+
+        await chatService.resetChatState(userId);
 
         await ctx.reply(i18n.t("info-section.reset_farewell", { lng }));
       } catch (error) {

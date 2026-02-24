@@ -4,12 +4,22 @@ import { sendLocalizedStaticMessage } from "../i18n/sendLocalizedStaticMessage.j
 import { withTyping } from "../core/telegram/withTyping.js";
 import i18n from "../i18n/i18n.js";
 import { ELanguage } from "../core/enums/index.js";
+import { userService } from "../api/user/user.service.js";
 
 export function registerOnStartHandler(bot: Telegraf) {
   bot.start(async (ctx) => {
     await withTyping(ctx, async () => {
       try {
-        await chatService.resetChatState(ctx.message.from.id);
+        const user = await userService.getUser(ctx.message.from.id).catch(() => null);
+
+        if (user) {
+          await sendLocalizedStaticMessage(
+            ctx,
+            "info-section.it_seems_like_our_conversation_is_already_in_progress",
+            user.language,
+          );
+          return;
+        }
 
         await chatService.startChatSession(ctx.message.from.id);
 
