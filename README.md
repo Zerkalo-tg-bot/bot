@@ -10,7 +10,6 @@ Copy `bot/.env.example` to `bot/.env` and fill in:
 - `API_URL` — API base URL
   - local dev: `http://localhost:3000`
   - docker compose (inside the docker network): `http://api:3000`
-- `IS_PRODUCTION` — bot identity mode (true/false)
 
 ## Local development
 
